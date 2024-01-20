@@ -7,4 +7,6 @@
                  start-page="Default-topic.md">
 
     <toc-element topic="Default-topic.md"/>
+    <toc-element topic="查看-Linux-服务器日志的技巧.md"/>
+    <toc-element topic="解决Windows中-文件正在使用-问题.md"/>
 </instance-profile>

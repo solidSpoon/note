@@ -1,0 +1,17 @@
+# 解决Windows中&quot;文件正在使用&quot;问题
+
+当我们试图修改或删除某个文件时，可能收到一个“文件正在使用”的提示。
+
+## 通过资源监视器找到使用者
+
+<procedure title="打开资源监视器" type="choices" id="open-resource-manager">
+   <step>使用快捷键 `Win + R` 打开"运行"对话框，输入 resmon.exe，按回车键运行。</step>
+   <step>点击开始菜单，依次选择 "所有程序" → "Windows 管理工具" → "资源监视器"。</step>
+</procedure>
+
+<procedure title="使用资源监视器关闭目标程序" type="choices" id="procedure-id">
+   <step>使用快捷键 `Win + R` 打开"运行"对话框，输入 resmon.exe，按回车键运行。</step>
+   <step>点击开始菜单，依次选择 "所有程序" → "Windows 管理工具" → "资源监视器"。</step>
+</procedure>
+
+在资源监视器中，首先选择 "CPU" 标签。然后，在“关联的句柄”搜索框中输入您想要释放的文件名。这样，您就可以找到所有持有该文件句柄的进程。最后，只需右键点击相应的进程，选择 "结束进程"，即可解决"文件正在使用"的问题。
