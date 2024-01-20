@@ -1,3 +1,5 @@
-# s-note
+# note
 
-powered by JetBrains [WriterSide](https://www.jetbrains.com/writerside/)
+Some of my notes
+
+Powered by JetBrains [Writerside](https://www.jetbrains.com/writerside/)
