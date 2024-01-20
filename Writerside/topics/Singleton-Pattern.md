@@ -78,9 +78,16 @@ public class IdGenerator {
 }
 ```
 
-> **传言：**因为指令重排序，可能会导致 IdGenerator 对象被 new 出来，并且赋值给 instance 之后，还没来得及初始化（执行构造函数中的代码逻辑），就被另一个线程使用了。要解决这个问题，我们需要给 instance 成员变量加上 volatile 关键字，禁止指令重排序才行。
-
-> 实际上高版本 Java 已经把对象 new 操作和初始化操作设计为原子操作了
+<deflist>
+<def title="传言：需要给 instance 成员变量加上 volatile 关键字。">
+<p>
+这个传言的原因是，如果不加 volatile 关键字，可能会导致 IdGenerator 对象被 new 出来，并且赋值给 instance 之后，还没来得及初始化（执行构造函数中的代码逻辑），就被另一个线程使用了。
+</p>
+<p>
+实际上高版本 Java 已经把对象 new 操作和初始化操作设计为原子操作了
+</p>
+</def>
+</deflist>
 
 ## Static internal class
 
