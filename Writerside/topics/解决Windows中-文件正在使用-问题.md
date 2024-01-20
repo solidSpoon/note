@@ -5,8 +5,8 @@
 ## 通过资源监视器找到使用者
 
 <procedure title="打开资源监视器" type="choices" id="open-resource-manager">
-   <step>使用快捷键 `Win + R` 打开"运行"对话框，输入 resmon.exe，按回车键运行。</step>
-   <step>点击开始菜单，依次选择 "所有程序" → "Windows 管理工具" → "资源监视器"。</step>
+   <step>使用快捷键 <shortcut>Win+R</shortcut> 打开"运行"对话框，输入 resmon.exe，按回车键运行。</step>
+   <step>点击开始菜单，前往<ui-path> 所有程序 | Windows 管理工具 | 资源监视器</ui-path>。</step>
 </procedure>
 
 <procedure title="使用资源监视器关闭目标程序" type="steps" id="procedure-id">
