@@ -18,4 +18,5 @@
     <toc-element topic="Docker-Network.md"/>
     <toc-element topic="使用-Git-worktree-将同一个项目分裂成多个本地目录.md"/>
     <toc-element topic="Singleton-Pattern.md"/>
+    <toc-element topic="查看生产死循环.md"/>
 </instance-profile>
