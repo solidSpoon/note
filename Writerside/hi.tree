@@ -13,4 +13,5 @@
     <toc-element topic="Spring-Boot-打印事务日志.md"/>
     <toc-element topic="正则表达式.md"/>
     <toc-element topic="解决Windows中-文件正在使用-问题.md"/>
+    <toc-element topic="MySql-死锁时的一种解决办法.md"/>
 </instance-profile>
