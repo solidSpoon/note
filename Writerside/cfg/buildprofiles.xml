@@ -4,10 +4,7 @@
         <primary-color>metallic</primary-color>
         <custom-favicons>favicon.png</custom-favicons>
         <header-logo>my-logo.png</header-logo>
-        <product-web-url>https://help.example.com</product-web-url>
-        <download-title>Get Awesome App</download-title>
-        <download-page>https://example.com</download-page>
-        <showDownloadButton>false</showDownloadButton>
+        <product-web-url>https://solidspoon.xyz/note/</product-web-url>
     </variables>
     <footer>
         <social type="blog" href="https://solidspoon.xyz"/>
