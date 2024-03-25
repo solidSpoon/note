@@ -4,9 +4,9 @@
 
 <instance-profile id="note"
                  name="Note"
-                 start-page="Default-topic.md">
+                 start-page="Home.topic">
 
-    <toc-element topic="Default-topic.md"/>
+    <toc-element topic="Home.topic"/>
     <toc-element topic="ApachePOI.md"/>
     <toc-element topic="查看-Linux-服务器日志的技巧.md"/>
     <toc-element topic="Windows-交换-ESC-和-CapsLock.md"/>

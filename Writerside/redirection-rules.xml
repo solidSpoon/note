@@ -10,4 +10,8 @@
         <description><![CDATA[Created after removal of "<Cron-expression.md>" from Help Instance]]></description>
         <accepts>Cron-expression.html</accepts>
     </rule>
+    <rule id="522448b2">
+        <description>Created after removal of "This is the first topic" from Note</description>
+        <accepts>Default-topic.html</accepts>
+    </rule>
 </rules>
