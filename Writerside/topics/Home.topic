@@ -21,9 +21,9 @@
             Choose the instance you want to access.
         </description>
         <spotlight>
-            <a href="https://solidspoon.xyz/blog" type="documents"
+            <a href="https://solidspoon.xyz/blog/home.html" type="documents"
                summary="Access the Blog instance for all blog-related content">Blog</a>
-            <a href="https://solidspoon.xyz/note" type="library"
+            <a href="https://solidspoon.xyz/note/home.html" type="library"
                summary="Access the Note instance for all note-related content">Note</a>
         </spotlight>
     </section-starting-page>

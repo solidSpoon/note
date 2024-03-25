@@ -4,7 +4,7 @@
 
 <instance-profile id="blog"
                  name="Blog"
-                 start-page="blog.md">
+                 start-page="Home.topic">
 
     <toc-element topic="Home.topic"/>
     <toc-element topic="blog.md"/>
