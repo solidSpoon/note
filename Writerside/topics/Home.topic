@@ -4,17 +4,6 @@
 <topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
        title="Home" id="Home">
-
-    <!--    A section combines multiple topics dedicated to a specific subject.
-                Add a starting page to provide an overview of the topics in the section.
-                Start with two topics you want to promote in the <spotlight> group,
-                several important topics in the <primary> group (for example, where to start),
-                several less important topics in the <secondary> group (for example, more advanced topics),
-                and optionally add any other relevant topics in the <misc> group as cards and lists of links
-                (maybe related topics from other sections).
-                Only the spotlight section is limited to two topics.
-                For other groups, try to keep the number between 2 and 6, but you can add more if necessary.-->
-
     <section-starting-page>
         <title>Navigation Page</title>
         <description>
@@ -26,6 +15,22 @@
             <a href="https://solidspoon.xyz/note/home.html" type="library"
                summary="Access the Note instance for all note-related content">Note</a>
         </spotlight>
+        <primary>
+            <title>
+                Links
+            </title>
+            <a href="https://github.com/solidspoon"
+               summary="Check out my GitHub profile">GitHub</a>
+            <a href="https://solidspoon.xyz"
+                summary="Check out my personal website">Website</a>
+        </primary>
+        <secondary>
+            <title>
+                Projects
+            </title>
+            <a href="https://github.com/solidSpoon/DashPlayer"
+               summary="Check out DashPlayer for English learning.">DashPlayer</a>
+        </secondary>
     </section-starting-page>
 
 </topic>
