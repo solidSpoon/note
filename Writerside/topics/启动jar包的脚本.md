@@ -1,5 +1,14 @@
 # 启动 jar 包的脚本
 
+创建可执行文件, 将下面的脚本内容复制到文件中;
+```Bash
+vim rg
+```
+
+```Bash
+chmod +x ./rg
+```
+
 ```Bash
 #!/bin/bash
 
