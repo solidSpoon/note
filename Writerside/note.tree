@@ -6,6 +6,7 @@
                  name="Note"
                  start-page="Home.topic">
 
+    <toc-element topic="启动jar包的脚本.md"/>
     <toc-element topic="Home.topic"/>
     <toc-element topic="ApachePOI.md"/>
     <toc-element topic="查看-Linux-服务器日志的技巧.md"/>
