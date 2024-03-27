@@ -2,12 +2,19 @@
 
 创建可执行文件, 将下面的脚本内容复制到文件中;
 ```Bash
-vim rg
+vim rj
 ```
 
 ```Bash
-chmod +x ./rg
+chmod +x ./rj
 ```
+
+使用示例
+```Bash
+./rj example.jar
+./rj -e test example.jar
+```
+
 
 ```Bash
 #!/bin/bash
