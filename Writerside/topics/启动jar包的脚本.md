@@ -49,5 +49,9 @@ fi
 # 提取 JAR 文件的基本名称作为日志文件名
 JAR_NAME=$(basename "$JAR_FILE" .jar)
 
+nohup java -Xms512m -Xmx1024m -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=1024m -jar "$JAR_FILE" --spring.profiles.active="$ENVIRONMENT" > /dev/null 2>&1 &
+```
+
+```Bash
 nohup java -Xms512m -Xmx1024m -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=1024m -jar "$JAR_FILE" --spring.profiles.active="$ENVIRONMENT" >> "./logs/$JAR_NAME.log" &
 ```
