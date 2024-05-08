@@ -7,5 +7,40 @@
                  start-page="Home.topic">
 
     <toc-element topic="Home.topic"/>
+    <toc-element toc-title="2022">
+        <toc-element topic="06-16-inventory-lock-master_index.md"/>
+        <toc-element topic="03-23-distributed-locks-with-redis_index.md"/>
+        <toc-element topic="02-14-clash-for-windows-tap-mode-cannot-connect-to-network-normally_index.md"/>
+        <toc-element topic="04-11-exploring-mongodb_index.md"/>
+        <toc-element topic="06-16-spring-transaction-propagation-characteristics_index.md"/>
+    </toc-element>
+    <toc-element toc-title="2021">
+        <toc-element topic="02-16-building-a-simple-and-user-friendly-note-taking-system_index.md"/>
+        <toc-element topic="02-17-win10-mysql-8-0-docker-building-master-slave-replication_index.md"/>
+        <toc-element topic="02-17-configuring-wsl2-to-use-windows-proxy-for-internet-access_index.md"/>
+        <toc-element topic="03-04-step-by-step-guide-to-reading-bytecode-of-a-java-file_index.md"/>
+        <toc-element topic="02-16-how-to-visually-edit-web-page-elements_index.md"/>
+        <toc-element topic="02-16-several-methods-to-view-docker-ip_index.md"/>
+        <toc-element topic="02-17-setting-up-proxy-for-git-on-windows_index.md"/>
+        <toc-element topic="02-17-mysql-8-0-building-semi-synchronous-replication_index.md"/>
+        <toc-element topic="02-18-docker-network-configuration_index.md"/>
+        <toc-element topic="02-16-article-formatting-guide_index.md"/>
+        <toc-element topic="02-23-understanding-blending-modes-in-photoshop-layers_index.md"/>
+        <toc-element topic="02-23-getting-started-with-jshell_index.md"/>
+        <toc-element topic="02-16-multi-cursor-feature-in-vs-code_index.md"/>
+        <toc-element topic="02-16-removing-or-modifying-occupied-files-in-windows_index.md"/>
+        <toc-element topic="index.md"/>
+        <toc-element topic="02-17-win10-mysql-5-7-docker-building-master-slave-replication_index.md"/>
+        <toc-element topic="02-17-win10-mysql-8-zip-version-building-master-slave-replication_index.md"/>
+        <toc-element topic="03-05-custom-class-loader-loads-encrypted-class-file_index.md"/>
+        <toc-element topic="02-16-the-intriguing-three-way-handshake-and-four-way-farewell-in-tcp-1_index.md"/>
+        <toc-element topic="02-16-reflections-on-movie-the-island_index.md"/>
+        <toc-element topic="02-16-matching-multiples-of-3-with-regular-expressions_index.md"/>
+        <toc-element topic="09-25-java-functional-programming-explained_index.md"/>
+        <toc-element topic="03-07-summary-of-thread-collaboration-methods-in-java_index.md"/>
+        <toc-element topic="02-16-git-is-a-purely-functional-data-structure_index.md"/>
+        <toc-element topic="02-18-docker-diagnostic-tool-busybox_index.md"/>
+        <toc-element topic="02-17-win10-mysql-8-zip-version-building-gtid-based-master-slave-replication_index.md"/>
+    </toc-element>
     <toc-element topic="blog.md"/>
 </instance-profile>
