@@ -14,4 +14,8 @@
         <description>Created after removal of "This is the first topic" from Note</description>
         <accepts>Default-topic.html</accepts>
     </rule>
+    <rule id="3d8ce376">
+        <description>Created after removal of "About Blog" from Blog</description>
+        <accepts>blog.html</accepts>
+    </rule>
 </rules>
