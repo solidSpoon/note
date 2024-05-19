@@ -1,28 +1,21 @@
 ---
-slug:  understanding-blending-modes-in-photoshop-layers”
 title: PhotoShop 图层的混合模式是怎么回事
-authors: [solidSpoon]
-tags: []
+date: 2021-02-23 21:05:41
+updated: 
+tags: 
+categories: 
+mathjax: true
 ---
 
 ## 前言
 在修图软件中，调整混合模式就可以将两张照片用不同的风格混合在一起
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210643.gif)
-
 上图就是将下面这两个图片用不同的混合模式叠加的效果，那么你有没有想过这是什么原理呢？本文就以几个经典的混合模式为例简单研究一下。
 
-<table>
-<tr>
-<td>
-<img src="https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210706.png" width="100%"/>
-</td>
-<td>
-<img src="https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210720.png" width="100%"/>
-</td>
-</tr>
-</table>
-
+{% gi 2 2 %}
+  ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210706.png)
+  ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210720.png)
+{% endgi %}
 
 
 
@@ -35,39 +28,23 @@ tags: []
 
 ### YES!!! RGB!!
 有谁能不喜欢 RGB 呢。课本上都讲过，光的三原色是红绿蓝，将这三种颜色按照不同的强度和不同的比例混合之后，就可以得到其他的颜色。
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223211659.png)
-
 计算机也是这样。在计算机中，红绿蓝的比例可以由一组在 [0 - 255] 之间的数据表示，数字越大对应颜色光强越大。就像下图这样，比如我们想显示纯红色，那就让红色的发光强度最大，绿色和蓝色不发光，因此红色就表示为 `RGB(255, 0, 0)`
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223211735.png)
-
 如果想显示黄色呢？根据上面的三原色图，只需要让蓝色不发光，红色和绿色发光强度最大，就得到了黄色，
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223211803.png)
-
 如果让三种颜色第比例相同，那就变成了黑白灰。神奇吧，黑白灰的三原色比例相同，只是发光强度不同。从这个角度看，黑白灰其实是一种颜色，只是亮度不同。所以就不难理解如果想看到真正的「白色」，就必须拼命提高亮度，这也是我们希望显示器亮度更高的原因之一。
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223211815.png)
-
 当我们把上面的那些颜色块做的非常小，就变成了显示器中像素点。每个都是由红绿蓝三原色组成的，使用程序控制每个像素点的三原色比例，就显示出了不同的图案。下图就是显示器放大的样子。
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223211825.png)
 
 ### 修图就是计算
 到这，你一定能理解，修图软件中的所有操作就是对每个像素点的 RGB 值做计算，比如想要提高一张照片的曝光，那就同时提高每个像素的 RGB 值，这样照片就会变得明亮。如果想提高对比度，那就让较亮的地方的 RGB 更大，较暗的地方 RGB 更小，如下图：
 
-<table>
-<tr>
-<td>
-![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212000.png)
-</td>
-<td>
-![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212013.png)
-</td>
-</tr>
-</table>
-
+{% gi 2 2 %}
+  ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212000.png)
+  ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212013.png)
+{% endgi %}
 
 > 对比度低的照片各像素点的 RGB 值都比较居中，提高对比度后，RGB 值较低（暗）和 RGB 值较高（亮）的像素点变多了。
 
@@ -109,7 +86,6 @@ tags: []
 
 
 可见，正片上的色彩就是图像真实的色彩
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212157.jpeg)
 
 > [图片来源](https://www.google.com/url?sa=i&url=https%3A%2F%2Fzh-cn.facebook.com%2Fhi.xikon%2Fposts%2F279712775851997%2F&psig=AOvVaw1f4r21n5CgNHNQKHowqq5b&ust=1614155052538000&source=images&cd=vfe&ved=2ahUKEwi_8LWlyv_uAhXPCIgKHRkvCTIQjB16BAgAEAg)
@@ -119,55 +95,40 @@ tags: []
 那正片叠底就是把两个正片叠上，由于正片亮的地方是透明的，暗的地方是不透明的，叠上之后透明的地方就会显示出另一张正片的图案。
 
 典型示例如下图，上层图层是一个白色背景的水印，下层图层是一个风筝图片，它俩应用正片叠底之后水印的白色背景消失了。
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212214.png)
+正片叠底的英文是 Mutiply，跟它的名字一样，用公式表示就是：{% mathjax %}c=a \times b{% endmathjax %}
 
-正片叠底的英文是 Mutiply，跟它的名字一样，用公式表示就是：$c=a \times b$
 
-
-如果刚才那个扣水印的原理你没有看明白，那就用公式解释一下：白色的值是 1，如果 a 是白色，那么混合之后的结果就是 $1 \times b=b$，因此水印白色背景被扣掉了。
+如果刚才那个扣水印的原理你没有看明白，那就用公式解释一下：白色的值是 1，如果 a 是白色，那么混合之后的结果就是 {% mathjax %}1 \times b=b{% endmathjax %}，因此水印白色背景被扣掉了。
 
 
 如果自己跟自己做正片叠底呢？
-那公式就是 $c = a ^ 2$
+那公式就是 {% mathjax %}c = a ^ 2{% endmathjax %}
 
 图像如下，可见整体变暗了一些，亮度低的地方透明度低，变暗的幅度就比较大。
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212230.png)
-
 理论上，如果你能在曲线工具中调出一个标准的二次曲线，那它俩效果就是一样的！
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212253.jpeg)
 
 ### 滤色 Screen
 正片叠底是堆叠正片，滤色就是堆叠负片，负片就是正片颜色取反。较暗的场景在负片中变得较亮，较亮就意味着透明，叠上之后透明的地方就会显示出另一张负片的图案。
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212317.jpeg)
-
 因此如果我们把水印的背景换成黑色，文字换成白色，它俩做滤色，就会得到白色的水印
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212335.png)
-
-公式是这样：$C = 1-\left(1-a\right)\times\left(1-b\right)$
+公式是这样：{% mathjax %}C = 1-\left(1-a\right)\times\left(1-b\right){% endmathjax %}
 也很好理解：(1 - a) 和 (1 - b) 代表 a 和 b 的负片，它俩做堆叠（乘法），最后再冲洗成正片（1 - x）
 
 自己叠底自己效果如下曲线
-
-$c=1-\left(1-a\right)^2$
-
+{% mathjax %}c=1-\left(1-a\right)^2{% endmathjax %}
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212357.png)
-
 可见整体偏亮了，同样可以用曲线工具模拟出来：
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212412.jpeg)
 
 ### 叠加 Overlay
 叠加模式是「正片叠底」和「滤色」的混合模式，是个分段函数。它的公式如下：
 
 
-$$
-{f(a, b)}=\left\{\begin{array}{ll}2 a b, & \text { if } a<0.5 \\ 1-2(1-a)(1-b), & \text { otherwise }\end{array}\right.
-$$
+{% mathjax %}{f(a, b)}=\left\{\begin{array}{ll}2 a b, & \text { if } a<0.5 \\ 1-2(1-a)(1-b), & \text { otherwise }\end{array}\right.{% endmathjax %}
 
 
 其中，a 是**底下的图层**，b 是上面的图层，就是说
@@ -178,9 +139,7 @@ $$
 
 
 注意观察公式：当其中一个像素某个值是 0.5 的时候（a = 0.5 或 b = 0.5），另一个像素对应值相当于没变。如果我们拿一个红绿蓝的亮度都是 0.5 的图片，也就是`RGB(128,128,128)` 和另一个图片做叠加，这个颜色就消失了，再扣个水印试试。
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212427.jpeg)
-
 把水印放在**下层**，在上层应用「叠加」效果，`RGB(128,128,128)` 就被扣掉了，我来解释一下：
 
 - 白色水印部分比较亮，应用的是两倍滤色，前面说滤色会保留白色，因此白色被保留了下来
@@ -194,18 +153,12 @@ $$
 那叠加公式这个「两倍」是干嘛的，你说「叠加」是结合了「正片叠底」和「滤色」，那为什么不直接结合，非要弄个两倍呢？
 
 看一下图像就知道了，由于三维图不好展示，这里还是压缩成二维，也就是自己叠加自己，如果不加两倍直接结合的话会怎么样呢？
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212442.png)
-
 两条曲线在 x = 0.5 处根本就是不连续的嘛，这怎么能行呢，所以加上两倍是为了让它俩的图像连续，就下面这样
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212500.png)
 去掉多余的线条，就是下面这个，是一个增加对比度的曲线：
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212527.png)
-
 注意上面这个曲线是自己叠加自己的情况，看起来还是可以用曲线工具模拟出来
-
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210319193823.jpeg)
 
 ## 总结

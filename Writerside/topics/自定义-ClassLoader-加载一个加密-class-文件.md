@@ -1,9 +1,16 @@
 ---
-slug: custom-class-loader-loads-encrypted-class-file
 title: 自定义 ClassLoader 加载一个加密 class 文件
-authors: [solidSpoon]
-tags: [Java, JVM, 类加载器]
+date: 2021-03-05 12:49:28
+updated: 
+tags: 
+ - Java
+ - JVM
+ - 类加载器
+categories: 
+mathjax: false
 ---
+
+
 
 跟着我体验一下传说中非常厉害的类加载器吧！
 ## 制作加密 class

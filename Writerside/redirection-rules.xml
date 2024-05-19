@@ -14,4 +14,28 @@
         <description>Created after removal of "This is the first topic" from Note</description>
         <accepts>Default-topic.html</accepts>
     </rule>
+    <rule id="3d8ce376">
+        <description>Created after removal of "About Blog" from Blog</description>
+        <accepts>blog.html</accepts>
+    </rule>
+    <rule id="7f0e0b5d">
+        <description>Created after removal of "自定义 ClassLoader 加载一个加密 class 文件" from Blog</description>
+        <accepts>03-05-custom-class-loader-loads-encrypted-class-file_index.html</accepts>
+    </rule>
+    <rule id="33f1ddd7">
+        <description>Created after removal of "配置 WSL2 使用 Windows 代理上网" from Blog</description>
+        <accepts>02-17-configuring-wsl2-to-use-windows-proxy-for-internet-access_index.html</accepts>
+    </rule>
+    <rule id="5bcee16">
+        <description>Created after removal of "Windows 下为 Git 设置代理" from Blog</description>
+        <accepts>02-17-setting-up-proxy-for-git-on-windows_index.html</accepts>
+    </rule>
+    <rule id="39d926ce">
+        <description>Created after removal of "PhotoShop 图层的混合模式是怎么回事" from Blog</description>
+        <accepts>02-23-understanding-blending-modes-in-photoshop-layers_index.html</accepts>
+    </rule>
+    <rule id="31be8c62">
+        <description>Created after removal of "文章排版指南" from Blog</description>
+        <accepts>02-16-article-formatting-guide_index.html</accepts>
+    </rule>
 </rules>

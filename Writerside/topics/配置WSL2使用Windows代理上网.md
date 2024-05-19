@@ -1,8 +1,9 @@
 ---
-slug:  configuring-wsl2-to-use-windows-proxy-for-internet-access
 title: 配置 WSL2 使用 Windows 代理上网
-authors: [solidSpoon]
-tags: []
+date: 2021-02-17 01:41:45
+updated: 
+tags: 教程
+categories: 
 ---
 
 ## WSL 2 配置代理
@@ -17,16 +18,12 @@ tags: []
 这里以 Clash 为例，打开 Allow LAN 选项，如下图所示。如果你使用其他软件，那可能是叫「网关模式」、「允许来自局域网的链接」或者其它的什么，都是一个东西，打开就好了，注意打开这个选项后你的电脑就可以代理整个局域网内的机器了，虽然其他的机器还需要额外的配置，但也还是注意安全。
 
 ![image.png](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210217014320.png)
-
 对于 Clash 来说，这个选项是一次性的，下次开机它就关了，不过可以在配置文件里改，通常文件的开头就是。如下图，改成 true 就行。
-
 ![image.png](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210217014312.png)
-
-开启这个选项后，仔细找找，你会找到一个 IP 地址和一个端口号，IP 其实就是本机 IP 啦，这两个数一会有用。
+开启这个选项后，仔细找找，你会找到一个 IP 地址和一个端口号，IP 其实就是本机 IP 啦，这两个数一会有用。 
 
 ![image.png](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210217014306.png)
-
-Clash 这个端口 http 和 socks 通用
+Clash 这个端口 http 和 socks 通用 
 
 
 注意如果后文配置后没有效果，那可能是 Windows  防火墙的锅，快去配置防火墙放行 Clash

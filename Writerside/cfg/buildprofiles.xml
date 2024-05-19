@@ -21,4 +21,5 @@
             <noindex-content>false</noindex-content>
         </variables>
     </build-profile>
+    <sitemap priority="0.35" change-frequency="monthly"/>
 </buildprofiles>

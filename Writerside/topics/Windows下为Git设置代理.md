@@ -1,8 +1,9 @@
 ---
-slug:  setting-up-proxy-for-git-on-windows
 title: Windows 下为 Git 设置代理
-authors: [solidSpoon]
-tags: []
+date: 2021-02-17 13:23:11
+updated: 
+tags:  教程
+categories: 
 ---
 
 ## Windows 下为 Git 设置代理
