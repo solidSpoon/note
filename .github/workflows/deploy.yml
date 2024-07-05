@@ -7,6 +7,9 @@ on:
     branches: ["master"]
   # Specify to run a workflow manually from the Actions tab on GitHub
   workflow_dispatch:
+  # Schedule the workflow to run every Friday at 8 PM Beijing Time (12 PM UTC)
+  schedule:
+    - cron: "0 12 * * 5"
 
 # Gives the workflow permissions to clone the repo and create a page deployment
 permissions:
