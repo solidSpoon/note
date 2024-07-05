@@ -1,21 +1,22 @@
----
-title: PhotoShop 图层的混合模式是怎么回事
-date: 2021-02-23 21:05:41
-updated: 
-tags: 
-categories: 
-mathjax: true
----
+# 2102 PhotoShop 图层的混合模式是怎么回事
+
+[//]: # (---)
+[//]: # (title: PhotoShop 图层的混合模式是怎么回事)
+[//]: # (date: 2021-02-23 21:05:41)
+[//]: # (updated:)
+[//]: # (tags:)
+[//]: # (categories:)
+[//]: # (mathjax: true)
+[//]: # (---)
 
 ## 前言
 在修图软件中，调整混合模式就可以将两张照片用不同的风格混合在一起
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210643.gif)
 上图就是将下面这两个图片用不同的混合模式叠加的效果，那么你有没有想过这是什么原理呢？本文就以几个经典的混合模式为例简单研究一下。
 
-{% gi 2 2 %}
-  ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210706.png)
-  ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210720.png)
-{% endgi %}
+
+![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210706.png)
+![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223210720.png)
 
 
 

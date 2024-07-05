@@ -1,9 +1,11 @@
----
-slug: inventory-lock-master
-title: 锁库大师
-authors: [solidSpoon]
-tags: []
----
+# 2205 锁库大师
+
+[//]: # (---)
+[//]: # (slug: inventory-lock-master)
+[//]: # (title: 锁库大师)
+[//]: # (authors: [solidSpoon])
+[//]: # (tags: [])
+[//]: # (---)
 
 ## 背景
 希望在顾客下单时对库存明细表中的商品进行库存锁定，库存明细表简化后如下所示：
