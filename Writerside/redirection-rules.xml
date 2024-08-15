@@ -38,4 +38,8 @@
         <description>Created after removal of "文章排版指南" from Blog</description>
         <accepts>02-16-article-formatting-guide_index.html</accepts>
     </rule>
+    <rule id="2730fee7">
+        <description>Created after removal of "插入操作中的死锁现象" from Note</description>
+        <accepts>Deadlock_Phenomena_in_InnoDB_Insert_Operations.html</accepts>
+    </rule>
 </rules>
