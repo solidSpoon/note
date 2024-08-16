@@ -6,7 +6,6 @@
                  name="Note"
                  start-page="Home.topic">
 
-    <toc-element topic="Understanding_Deadlocks_in_Unique_Index_Inserts.md"/>
     <toc-element topic="Home.topic"/>
     <toc-element topic="启动jar包的脚本.md"/>
     <toc-element topic="ApachePOI.md"/>
@@ -22,4 +21,7 @@
     <toc-element topic="使用-Git-worktree-将同一个项目分裂成多个本地目录.md"/>
     <toc-element topic="Singleton-Pattern.md"/>
     <toc-element topic="查看生产死循环.md"/>
+    <toc-element topic="Tell_Stories.md">
+        <toc-element topic="Understanding_Deadlocks_in_Unique_Index_Inserts.md"/>
+    </toc-element>
 </instance-profile>
