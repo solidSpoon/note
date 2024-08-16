@@ -6,6 +6,7 @@
                  name="Note"
                  start-page="Home.topic">
 
+    <toc-element topic="Understanding_Deadlocks_in_Unique_Index_Inserts.md"/>
     <toc-element topic="Home.topic"/>
     <toc-element topic="启动jar包的脚本.md"/>
     <toc-element topic="ApachePOI.md"/>
