@@ -42,10 +42,11 @@
 ### 修图就是计算
 到这，你一定能理解，修图软件中的所有操作就是对每个像素点的 RGB 值做计算，比如想要提高一张照片的曝光，那就同时提高每个像素的 RGB 值，这样照片就会变得明亮。如果想提高对比度，那就让较亮的地方的 RGB 更大，较暗的地方 RGB 更小，如下图：
 
-{% gi 2 2 %}
+[//]: # ({% gi 2 2 %})
   ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212000.png)
   ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212013.png)
-{% endgi %}
+
+[//]: # ({% endgi %})
 
 > 对比度低的照片各像素点的 RGB 值都比较居中，提高对比度后，RGB 值较低（暗）和 RGB 值较高（亮）的像素点变多了。
 
@@ -104,7 +105,7 @@
 
 
 如果自己跟自己做正片叠底呢？
-那公式就是 {% mathjax %}c = a ^ 2{% endmathjax %}
+那公式就是 <math>c = a ^ 2</math>
 
 图像如下，可见整体变暗了一些，亮度低的地方透明度低，变暗的幅度就比较大。
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212230.png)
@@ -116,11 +117,16 @@
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212317.jpeg)
 因此如果我们把水印的背景换成黑色，文字换成白色，它俩做滤色，就会得到白色的水印
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212335.png)
-公式是这样：{% mathjax %}C = 1-\left(1-a\right)\times\left(1-b\right){% endmathjax %}
+公式是这样：<math>C = 1-\left(1-a\right)\times\left(1-b\right)</math>
 也很好理解：(1 - a) 和 (1 - b) 代表 a 和 b 的负片，它俩做堆叠（乘法），最后再冲洗成正片（1 - x）
 
 自己叠底自己效果如下曲线
-{% mathjax %}c=1-\left(1-a\right)^2{% endmathjax %}
+<code-block lang="tex">
+\begin{equation}
+c=1-\left(1-a\right)^2
+\end{equation}
+</code-block>
+
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212357.png)
 可见整体偏亮了，同样可以用曲线工具模拟出来：
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210223212412.jpeg)
@@ -129,7 +135,11 @@
 叠加模式是「正片叠底」和「滤色」的混合模式，是个分段函数。它的公式如下：
 
 
-{% mathjax %}{f(a, b)}=\left\{\begin{array}{ll}2 a b, & \text { if } a<0.5 \\ 1-2(1-a)(1-b), & \text { otherwise }\end{array}\right.{% endmathjax %}
+<code-block lang="tex">
+\begin{equation}
+{f(a, b)}=\left\{\begin{array}{ll}2 a b, & \text { if } a<0.5 \\ 1-2(1-a)(1-b), & \text { otherwise }\end{array}\right.
+\end{equation}
+</code-block>
 
 
 其中，a 是**底下的图层**，b 是上面的图层，就是说
