@@ -6,8 +6,6 @@ tags:  教程
 categories:
 ---
 
-## Windows 下为 Git 设置代理
-
 命令行上 GitHub 真是龟速，偶尔体验一下国内的 Gitee 就感觉爽爆了，还是快给 Git 整个代理吧！
 Git 支持两种协议，SSH 和 HTTPS，配置的方式不一样，这两种方式平时都得用，下面分别介绍一下
 ![image.png](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/20210217132147.png)
