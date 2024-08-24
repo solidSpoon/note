@@ -1,4 +1,4 @@
-# 2205 锁库大师
+# 锁库大师
 
 [//]: # (---)
 [//]: # (slug: inventory-lock-master)
