@@ -42,4 +42,8 @@
         <description>Created after removal of "插入操作中的死锁现象" from Note</description>
         <accepts>Deadlock_Phenomena_in_InnoDB_Insert_Operations.html</accepts>
     </rule>
+    <rule id="56d5aab6">
+        <description>Created after removal of "Distributed locks with Redis" from Blog</description>
+        <accepts>Distributed locks with Redis.html</accepts>
+    </rule>
 </rules>

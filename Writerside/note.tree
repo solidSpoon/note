@@ -7,21 +7,21 @@
                  start-page="Home.topic">
 
     <toc-element topic="Home.topic"/>
-    <toc-element topic="启动jar包的脚本.md"/>
-    <toc-element topic="ApachePOI.md"/>
-    <toc-element topic="查看-Linux-服务器日志的技巧.md"/>
-    <toc-element topic="Windows-交换-ESC-和-CapsLock.md"/>
-    <toc-element topic="Redis-批量删除-Key.md"/>
-    <toc-element topic="Spring-Boot-打印事务日志.md"/>
-    <toc-element topic="Regular_Expressions.md"/>
-    <toc-element topic="解决Windows中-文件正在使用-问题.md"/>
-    <toc-element topic="MySql-死锁时的一种解决办法.md"/>
-    <toc-element topic="Binary-Algorithm.md"/>
-    <toc-element topic="Docker-Network.md"/>
-    <toc-element topic="使用-Git-worktree-将同一个项目分裂成多个本地目录.md"/>
-    <toc-element topic="Singleton-Pattern.md"/>
-    <toc-element topic="查看生产死循环.md"/>
+    <toc-element topic="2309-Script_to_Launch_JAR_File.md"/>
+    <toc-element topic="2308-ApachePOI.md"/>
+    <toc-element topic="2305-Tips_for_Viewing_Linux_Server_Logs.md"/>
+    <toc-element topic="2311-Swap_ESC_and_CapsLock_on_Windows.md"/>
+    <toc-element topic="2210-Batch_Delete_Keys_in_Redis.md"/>
+    <toc-element topic="2208-Print_Transaction_Logs_in_Spring_Boot.md"/>
+    <toc-element topic="2212-Regular_Expressions.md"/>
+    <toc-element topic="2206-Resolve_File_in_Use_Issue_in_Windows.md"/>
+    <toc-element topic="2212-A_Solution_for_MySQL_Deadlock.md"/>
+    <toc-element topic="2104-Binary-Algorithm.md"/>
+    <toc-element topic="2306-Docker_Network.md"/>
+    <toc-element topic="2212-Use_Git_Worktree_to_Split_a_Project_into_Multiple_Local_Directories.md"/>
+    <toc-element topic="2206-Singleton-Pattern.md"/>
+    <toc-element topic="2302-Identify_Infinite_Loops_in_Production.md"/>
     <toc-element topic="Tell_Stories.md">
-        <toc-element topic="Understanding_Deadlocks_in_Unique_Index_Inserts.md"/>
+        <toc-element topic="2408-Understanding_Deadlocks_in_Unique_Index_Inserts.md"/>
     </toc-element>
 </instance-profile>

@@ -1,9 +1,8 @@
 ---
+slug: distributed-locks-with-redis
 title: Distributed locks with Redis
-date: 2022-03-23 09:10:48
-updated: 
-tags: Redis
-categories: 
+authors: [solidSpoon]
+tags: []
 ---
 
 # Distributed locks with Redis
@@ -116,7 +115,7 @@ Basically the random value is used in order to release the lock in a safe way, w
 
 基本上，随机值用于以安全的方式释放锁，脚本告诉 Redis：仅当密钥存在并且存储在密钥中的值正是我期望的值时才删除密钥。这是通过以下 Lua 脚本完成的：
 
-```lua
+```
 if redis.call("get",KEYS[1]) == ARGV[1] then
     return redis.call("del",KEYS[1])
 else
@@ -230,7 +229,7 @@ The system liveness is based on three main features:
 5. 事实上，客户端通常会在未获取锁或获取锁但工作终止时合作移除锁，这使得我们可能不必等待密钥过期来重新获取锁。
 6. 事实上，当客户端需要重试锁时，它等待的时间比获取大多数锁所需的时间要长得多，以便在资源争用期间不太可能出现脑裂情况。
 
-However, we pay an availability penalty equal to [TTL](ttl.) time on network partitions, so if there are continuous partitions, we can pay this penalty indefinitely. This happens every time a client acquires a lock and gets partitioned away before being able to remove the lock.
+However, we pay an availability penalty equal to TTL time on network partitions, so if there are continuous partitions, we can pay this penalty indefinitely. This happens every time a client acquires a lock and gets partitioned away before being able to remove the lock.
 
 Basically if there are infinite continuous network partitions, the system may become not available for an infinite amount of time.
 
@@ -252,28 +251,28 @@ Basically to see the problem here, let’s assume we configure Redis without per
 
 If we enable AOF persistence, things will improve quite a bit. For example we can upgrade a server by sending SHUTDOWN and restarting it. Because Redis expires are semantically implemented so that virtually the time still elapses when the server is off, all our requirements are fine. However everything is fine as long as it is a clean shutdown. What about a power outage? If Redis is configured, as by default, to fsync on disk every second, it is possible that after a restart our key is missing. In theory, if we want to guarantee the lock safety in the face of any kind of instance restart, we need to enable fsync=always in the persistence setting. This in turn will totally ruin performances to the same level of CP systems that are traditionally used to implement distributed locks in a safe way.
 
-如果我们启用 [[AOF]] 持久性，事情会改善很多。例如，我们可以通过发送 SHUTDOWN 并重新启动它来升级服务器。因为 Redis 过期是在语义上实现的，所以当服务器关闭时，实际上时间仍然过去，我们所有的要求都很好。但是，只要它是干净的关闭，一切都很好。停电怎么办？如果 Redis 默认配置为每秒在磁盘上 fsync 一次，那么重启后我们的 key 可能会丢失。理论上，如果我们想在任何类型的实例重启时保证锁的安全性，我们需要在持久化设置中启用 fsync=always。这反过来又会完全破坏与传统上用于以安全方式实现分布式锁的 CP 系统相同级别的性能。
+如果我们启用 AOF 持久性，事情会改善很多。例如，我们可以通过发送 SHUTDOWN 并重新启动它来升级服务器。因为 Redis 过期是在语义上实现的，所以当服务器关闭时，实际上时间仍然过去，我们所有的要求都很好。但是，只要它是干净的关闭，一切都很好。停电怎么办？如果 Redis 默认配置为每秒在磁盘上 fsync 一次，那么重启后我们的 key 可能会丢失。理论上，如果我们想在任何类型的实例重启时保证锁的安全性，我们需要在持久化设置中启用 fsync=always。这反过来又会完全破坏与传统上用于以安全方式实现分布式锁的 CP 系统相同级别的性能。
 
-> [Consistency](https://en.wikipedia.org/wiki/Consistency_model "Consistency model")
+> [Consistency](https://en.wikipedia.org/wiki/Consistency_model)
 > Every read receives the most recent write or an error.
 >
-> [Availability](https://en.wikipedia.org/wiki/Availability "Availability")
+> [Availability](https://en.wikipedia.org/wiki/Availability)
 > Every request receives a (non-error) response, without the guarantee that it contains the most recent write.
 >
-> [Partition tolerance](https://en.wikipedia.org/wiki/Network_partitioning "Network partitioning")
+> [Partition tolerance](https://en.wikipedia.org/wiki/Network_partitioning)
 > The system continues to operate despite(尽管) an arbitrary number of messages being dropped (or delayed) by the network between nodes.
 
 However things are better than what they look like at a first glance. Basically the algorithm safety is retained as long as when an instance restarts after a crash, it no longer participates to any **currently active** lock, so that the set of currently active locks when the instance restarts, were all obtained by locking instances other than the one which is rejoining the system.
 
 然而，事情比乍看之下要好。基本上算法安全性只要在实例崩溃后重启时，不再参与任何**当前活动的**锁，因此实例重启时当前活动的锁集合，都是通过锁定实例获得的除了重新加入系统的那个。
 
-To guarantee this we just need to make an instance, after a crash, unavailable for at least a bit more than the max [TTL](ttl.) we use, which is, the time needed for all the keys about the locks that existed when the instance crashed, to become invalid and be automatically released.
+To guarantee this we just need to make an instance, after a crash, unavailable for at least a bit more than the max TTL we use, which is, the time needed for all the keys about the locks that existed when the instance crashed, to become invalid and be automatically released.
 
-为了保证这一点，我们只需要创建一个实例，在崩溃之后，至少比我们使用的最大 [TTL](ttl.) 多一点之后再变得可用，即所有关于锁的键所需的时间实例崩溃时存在的，变为无效并自动释放。
+为了保证这一点，我们只需要创建一个实例，在崩溃之后，至少比我们使用的最大 TTL 多一点之后再变得可用，即所有关于锁的键所需的时间实例崩溃时存在的，变为无效并自动释放。
 
-Using _delayed restarts_ it is basically possible to achieve safety even without any kind of Redis persistence available, however note that this may translate into an availability penalty. For example if a majority of instances crash, the system will become globally unavailable for [TTL](ttl.) (here globally means that no resource at all will be lockable during this time).
+Using _delayed restarts_ it is basically possible to achieve safety even without any kind of Redis persistence available, however note that this may translate into an availability penalty. For example if a majority of instances crash, the system will become globally unavailable for TTL (here globally means that no resource at all will be lockable during this time).
 
-使用 _delayed restarts_ 基本上可以实现安全，即使没有任何可用的 Redis 持久性，但是请注意，这可能会转化为可用性损失。例如，如果大多数实例崩溃，系统将在 [TTL](ttl.) 期间全局不可用（这里全局意味着在此期间根本没有资源可锁定）。
+使用 _delayed restarts_ 基本上可以实现安全，即使没有任何可用的 Redis 持久性，但是请注意，这可能会转化为可用性损失。例如，如果大多数实例崩溃，系统将在 TTL 期间全局不可用（这里全局意味着在此期间根本没有资源可锁定）。
 
 ## Making the algorithm more reliable: Extending the lock
 
@@ -298,7 +297,3 @@ If you are into distributed systems, it would be great to have your opinion / an
 如果您进入分布式系统，那么有您的意见/分析会很棒。其他语言的参考实现也可能很棒。
 
 Thanks in advance!
-
-## Analysis of Redlock
-
-1. Martin Kleppmann [analyzed Redlock here](http://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html). I disagree with the analysis and posted [my reply to his analysis here](http://antirez.com/news/101).

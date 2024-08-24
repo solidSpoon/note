@@ -6,7 +6,7 @@ tags: 教程
 categories: 
 ---
 
-## WSL 2 配置代理
+# WSL 2 配置代理
 
 在 Windows 上设置好代理，连上了谷歌开开心心，但是 WSL 2 不能共享 Windows 的代理策略，如果在 WSL 上再装一个代理软件那可太麻烦了，所以得想想办法。
 
