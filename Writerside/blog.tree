@@ -7,6 +7,7 @@
                  start-page="Home.topic">
 
     <toc-element topic="Home.topic"/>
+    <toc-element topic="IntelliJ-IDEA-HotSwap.md"/>
     <toc-element topic="2408-Deadlock_Phenomena_in_InnoDB_Insert_Operations.md"/>
     <toc-element topic="2205-Inventory_Lock_Master_Index.md"/>
     <toc-element topic="2102-Photoshop_Layer_Blending_Modes.md"/>

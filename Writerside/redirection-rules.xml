@@ -46,4 +46,8 @@
         <description>Created after removal of "Distributed locks with Redis" from Blog</description>
         <accepts>Distributed locks with Redis.html</accepts>
     </rule>
+    <rule id="64b1a0c2">
+        <description>Created after removal of "如何在 IntelliJ IDEA 中使用增强的 HotSwap 功能" from Note</description>
+        <accepts>IntelliJ-IDEA-HotSwap.html</accepts>
+    </rule>
 </rules>
