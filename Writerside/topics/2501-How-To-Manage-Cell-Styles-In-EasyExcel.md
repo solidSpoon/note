@@ -190,6 +190,14 @@ class FontColorHandler extends AbstractCellWriteHandler {
 }
 ```
 
+### 5.3 校验代码有效性
+
+下面代码可以打印当前 Excel 中已经创建的 CellStyle 数量，在 Handler 前后打印一下可以用来检验 Handler 中设置的样式是否被复用。
+
+```java
+log.info(workbook.getNumCellStyles());
+```
+
 #### 如何避免问题
 
 - **不直接**调用 `cell.getCellStyle().setFont(...)` 修改现有样式。
