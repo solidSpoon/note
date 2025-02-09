@@ -17,6 +17,9 @@
 
 在分词过程中，每一个单词、符号，甚至空格都会被转换为数字。可以将其理解为为每个词语和符号分配一个唯一的ID，这样计算机就能通过这些数字来处理语言。
 
+![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/2025-02-09-Tiktokenizer_Text_Tokenization_With_cl100k_base_Model_And_Token_Count_Display.png)
+
+
 在上面的示例中，模型实际上看到的是 `59907, 682, 279...`，模型的输出也是数字，再用同样的算法转换为人类可读的文本。
 
 ## 预训练模型
