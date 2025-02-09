@@ -3,6 +3,7 @@
 <tldr>
 本文详细介绍了 AI 聊天模型的学习过程，从获取语料库、文本分词、预训练模型，到如何将基础模型转变为能够对话的 Chat 模型。同时讨论了上下文理解、模型幻觉等关键概念，以及如何通过搜索功能来增强模型的实时性和准确性。
 </tldr>
+
 ## 获取语料库
 
 在训练一个AI模型之前，首先需要准备大量的“语料”——即各种文本数据。这些文本数据来源于互联网上的网页、书籍、文章、社交媒体等。可以将这些数据看作是为AI模型提供的“学习材料库”，它将从这些材料中学习语言和知识。
@@ -19,7 +20,7 @@
 
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/2025-02-09-Tiktokenizer_Text_Tokenization_With_cl100k_base_Model_And_Token_Count_Display.png)
 
-在上面的示例中，模型实际上看到的是 `59907, 682, 279...`，模型的输出也是数字，再用同样的算法转换为人类可读的文本。
+在上面的示例中，模型实际上看到的是 `59907, 682, 279...`，而模型的输出也是数字，再用同样的算法转换为人类可读的文本。
 
 ## 预训练模型
 
@@ -33,9 +34,7 @@
 
 假设我们有语料库中的一段文字：
 
-
-> I tend to specialise in shallow depth of field commercial and editorial images, recently I have been involved in portraiture and fashion as the technical challenges have been interesting to me. Most of my work is conducted on site and is taken "free style". I prefer to work this way, I "find" the image at the time of the event. I am passionate about the "feel" of an image, I love to produce images that evoke an emotion or question from the viewer. If you have something special and creative you wish to produced or take part in then please make contact. Above all the wordy bits.... I just love taking pictures ... Send me an email if your interested in working with me.
-
+> I tend to specialise in shallow depth of field commercial and editorial images, recently I have been involved in portraiture and fashion as the technical challenges have been interesting to me. Most of my work is conducted on site and is taken "free style". I prefer to work this way, I "find" the image at the time of the event. I am passionate about the "feel" of an image, I love to produce images that evoke an emotion or question from the viewer. If you have something special and creative you wish to produce or take part in then please make contact. Above all the wordy bits.... I just love taking pictures ... Send me an email if you're interested in working with me.
 
 训练的核心思路之一就是让模型学习“下一个词”或“下一个句子”的概率分布。例如，假设我们有以下句子（仅为示例）：
 
@@ -63,6 +62,9 @@ interesting	40.40%
 
 通过无数次这样的“下一个词”预测和纠正，模型会逐步学会哪种词汇在上下文里更合适、句子怎么组织才通顺。这样一来，模型就能够在看过足够多的文本之后，学到很多语言规律和事实知识。
 
+现代的模型通常可以根据很长的前文来预测下一个单词，如 `claude 3.5 sonnet` 的上下文长度为 20 万 token,
+也就是说这个模型有能力根据大约 20 万字的前文来预测下一个单词是什么。
+
 **当训练完成后，我们就得到一个“基础模型”（Base Model）。**
 
 这个时候，模型还只是一个预测器，给它一段文本，它会预测出下一个单词。
@@ -81,19 +83,19 @@ interesting	40.40%
 ...
 ```
 
-这就是为什么于 ChatGPT 对话是它会一个字一个字显示。
+这就是为什么与 ChatGPT 对话时，它会一个字一个字显示出来。
 
-但是这个模型还不能 Chat，比如我问这个模型你是谁，它不会回答 "我是 ChatGPT"，而是会尝试补全“？你从哪里来，你要到哪里去？”就是这个模型还没有“聊天”的概念。
+但是，这个模型还不能进行有效的对话。例如，如果我问它“你是谁”，它不会回答“我是 ChatGPT”，而是会尝试补全“？你从哪里来，你要到哪里去？”因为这个模型还没有“聊天”的概念。
 
 ## 把 Base 模型变成能聊天的 Chat 模型
 
-那么，如何让这个基础模型变成能和你正常聊天的“智能助手”呢？这里就需要 **对话格式** 和 **人类示例** 的帮助。
+那么，如何将这个基础模型转变为能够和你正常聊天的“智能助手”呢？这就需要 **对话格式** 和 **人类示例** 的帮助。
 
-像 OpenAI 等公司雇佣了大量的人类专家，这些专家会编写一些问题，并给出他们的回答示范，从而构建一个人类专家的对话语料库，类似下面这样：
+像 OpenAI 等公司会雇佣大量的人工专家，这些专家编写问题并给出对应的回答示范，进而构建一个人类专家的对话语料库，类似下面这样：
 
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/2025-02-09-Hugging_Face_OpenAssistant_oasst1_Dataset_Page_With_Viewer_And_Metadata_Details.png)
 
-接下来，将这些语料通过如下格式发送给模型进行训练：
+接下来，将这些语料通过特定格式发送给模型进行训练：
 
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/2025-02-09-Tiktokenizer_Tool_Usage_With_ChatGPT_Chinese_Interaction.png)
 
@@ -103,40 +105,39 @@ interesting	40.40%
 <|im_start|>assistant<|im_sep|>我是 ChatGPT<|im_end|>
 ```
 
-当程序检测到 `<|im_end|>` 时，它知道这一句话已经结束了，因此不会继续让模型补全。通过这种少量示例的训练，模型便能学习到如何在这种格式下进行对话，最终使得基础模型变成了一个能够进行对话的
-Chat 模型。
+当程序检测到 `<|im_end|>` 时，它知道这一句话已经结束，因此不会继续让模型补全。通过这种少量示例的训练，模型便能学习如何在这种格式下进行对话，最终将基础模型转变为能够进行流畅对话的 Chat 模型。
 
 ## 上下文（Context）
 
-人类在对话时，会根据当前谈话的内容来理解和回应。比如：
+人类在对话时，会根据当前的谈话内容来理解和回应。比如：
 
 ```
 人类: 我养了一只狗
 人类: 它今天不太开心
 ```
 
-即使第二句没说是谁不开心，我们也能从上下文理解"它"指的是狗。
+即使第二句没有明确说明是谁不开心，我们也能从上下文理解"它"指的是狗。
 
-大语言模型也是这样工作的。当我们和模型对话时,之前的对话内容会作为"上下文"传给模型：
+大语言模型也是如此。当我们和模型对话时，之前的对话内容会作为"上下文"传给模型：
 
 ```
 <|im_start|>user<|im_sep|>
 我养了一只狗
 <|im_end|>
 <|im_start|>assistant<|im_sep|>
-真好,养狗是很有趣的体验。狗狗是什么品种呢?
+真好，养狗是很有趣的体验。狗狗是什么品种呢?
 <|im_end|>
 <|im_start|>user<|im_sep|>
 它今天不太开心
 <|im_end|>
 ```
 
-模型能理解"它"指的是狗,是因为上文提到了狗。这种依赖上下文的理解方式让对话更自然。
+模型能够理解"它"指的是狗，因为在之前的对话中已经提到过狗。这种依赖上下文的理解方式让对话更自然。
 
-但是上下文也有限制：
+然而，上下文也有一定的限制：
 
-1. **长度限制**: 模型能记住的上下文长度是有限的（比如GPT-3.5是4k个token）。
-2. **时效性**: 每次对话结束,上下文就会被清空,下次对话要重新开始。
+1. **长度限制**：模型能够记住的上下文长度是有限的（例如，GPT-3.5最多为4k个token）。
+2. **时效性**：每次对话结束后，上下文会被清空，下次对话需要重新开始。
 
 ## 幻觉
 
@@ -177,16 +178,16 @@ Chat 模型。
 
 #### 减少大语言模型产生“幻觉”的方法
 
-现在的模型在这方面有所改善，其中一个方法为，准备一些问题和正确答案，然后试出哪些问题模型会胡说，然后把这些问题的答案改写为“对不起，我不知道....”，这样就得到了一个新的语料库，再将这个语料库给模型训练，这样，模型在遇到不会的问题时就知道该回复：“我不知道”了。
+现在的模型在这方面有所改善，主要的方法之一就是为模型提供正确的问题和答案，在发现模型会胡说时，通过修改答案为“对不起，我不知道....”的方式，来避免幻觉现象。这个新的训练语料库帮助模型在遇到不确定的问题时，能正确回应：“我不知道”。
 
-## 搜索
+### 搜索
 
-大语言模型虽然学习了很多知识，但还是有两个主要问题：
+大语言模型虽然学习了大量的知识，但仍然存在两个主要问题：
 
-1. **知识不够新**：模型的知识都是训练时的，训练之后发生的事情它就不知道了。
-2. **可能会胡说**：有时候模型会自信满满地给出看似对的答案，但其实是错的（这就是我们说的"幻觉"问题）。
+1. **知识不够新**：模型的知识都是训练时的，训练之后发生的事情它就无法知晓了。
+2. **可能会胡说**：有时候模型会自信满满地给出看似正确的答案，但实际上可能是错误的（即“幻觉”问题）。
 
-要解决这些问题，我们可以教会模型使用搜索功能。具体做法是准备这样的训练数据：
+为了解决这些问题，我们可以教会模型使用搜索功能。具体做法是准备这样的训练数据：
 
 原来的对话是这样的：
 
@@ -195,24 +196,24 @@ Chat 模型。
 助手：对不起，我不知道。
 ```
 
-我们改成这样：
+改为如下：
 
 ```
 人类：2024年世界杯冠军是谁？
-助手：这个我得查一查最新的体育赛事信息。
+助手：这个我得查一下最新的体育赛事信息。
 <|search|>2024年世界杯冠军队|2024 World Cup winner<|/search|>
 ```
 
-用这种数据训练后，模型就学会了：
+通过这种方式训练后，模型就学会了：
 
-1. 知道什么时候需要查新信息
-2. 主动提出要搜索
-3. 会写搜索关键词
+1. 知道何时需要查找最新信息。
+2. 主动提出要进行搜索。
+3. 正确生成搜索关键词。
 
 实际应用中，流程大致如下：
 
 1. 用户询问：特斯拉最新股价是多少？
-2. 模型发现需要最新数据，于是回答：
+2. 模型发现需要最新的数据，于是回答：
 
 ```
 让我查查最新股价。
@@ -220,8 +221,7 @@ Chat 模型。
 ```
 
 3. 程序看到这个搜索标记，就会去谷歌搜索这些关键词。
-
-4. 程序把谷歌搜到的结果放进对话：
+4. 程序将谷歌搜到的结果放进对话：
 
 ```
 <|im_start|>system<|im_sep|>
@@ -238,3 +238,5 @@ Chat 模型。
 ```
 根据最新数据，特斯拉股价是193.57美元（2024年2月8日收盘价）。<|im_end|>
 ```
+
+通过这些方式，AI能够更加准确和实时地回答问题。
