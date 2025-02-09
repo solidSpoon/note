@@ -19,7 +19,6 @@
 
 ![](https://ced-md-picture.oss-cn-beijing.aliyuncs.com/img/2025-02-09-Tiktokenizer_Text_Tokenization_With_cl100k_base_Model_And_Token_Count_Display.png)
 
-
 在上面的示例中，模型实际上看到的是 `59907, 682, 279...`，模型的输出也是数字，再用同样的算法转换为人类可读的文本。
 
 ## 预训练模型
@@ -34,9 +33,9 @@
 
 假设我们有语料库中的一段文字：
 
-```
-I tend to specialise in shallow depth of field commercial and editorial images, recently I have been involved in portraiture and fashion as the technical challenges have been interesting to me. Most of my work is conducted on site and is taken "free style". I prefer to work this way, I "find" the image at the time of the event. I am passionate about the "feel" of an image, I love to produce images that evoke an emotion or question from the viewer. If you have something special and creative you wish to produced or take part in then please make contact. Above all the wordy bits.... I just love taking pictures ... Send me an email if your interested in working with me.
-```
+
+> I tend to specialise in shallow depth of field commercial and editorial images, recently I have been involved in portraiture and fashion as the technical challenges have been interesting to me. Most of my work is conducted on site and is taken "free style". I prefer to work this way, I "find" the image at the time of the event. I am passionate about the "feel" of an image, I love to produce images that evoke an emotion or question from the viewer. If you have something special and creative you wish to produced or take part in then please make contact. Above all the wordy bits.... I just love taking pictures ... Send me an email if your interested in working with me.
+
 
 训练的核心思路之一就是让模型学习“下一个词”或“下一个句子”的概率分布。例如，假设我们有以下句子（仅为示例）：
 
@@ -104,7 +103,8 @@ interesting	40.40%
 <|im_start|>assistant<|im_sep|>我是 ChatGPT<|im_end|>
 ```
 
-当程序检测到 `<|im_end|>` 时，它知道这一句话已经结束了，因此不会继续让模型补全。通过这种少量示例的训练，模型便能学习到如何在这种格式下进行对话，最终使得基础模型变成了一个能够进行对话的 Chat 模型。
+当程序检测到 `<|im_end|>` 时，它知道这一句话已经结束了，因此不会继续让模型补全。通过这种少量示例的训练，模型便能学习到如何在这种格式下进行对话，最终使得基础模型变成了一个能够进行对话的
+Chat 模型。
 
 ## 上下文（Context）
 
