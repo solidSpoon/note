@@ -7,6 +7,7 @@
                  start-page="Home.topic">
 
     <toc-element topic="Home.topic"/>
+    <toc-element topic="How_AI_Learns_To_Chat.md"/>
     <toc-element topic="2501-How_To_Manage_Cell_Styles_In_EasyExcel.md"/>
     <toc-element topic="2311-IntelliJ_IDEA_HotSwap.md"/>
     <toc-element topic="2408-Deadlock_Phenomena_in_InnoDB_Insert_Operations.md"/>
