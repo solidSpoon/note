@@ -180,7 +180,7 @@ interesting	40.40%
 
 现在的模型在这方面有所改善，主要的方法之一就是为模型提供正确的问题和答案，在发现模型会胡说时，通过修改答案为“对不起，我不知道....”的方式，来避免幻觉现象。这个新的训练语料库帮助模型在遇到不确定的问题时，能正确回应：“我不知道”。
 
-### 搜索
+## 搜索
 
 大语言模型虽然学习了大量的知识，但仍然存在两个主要问题：
 
@@ -192,16 +192,24 @@ interesting	40.40%
 原来的对话是这样的：
 
 ```
-人类：2024年世界杯冠军是谁？
-助手：对不起，我不知道。
+<|im_start|>user<|im_sep|>
+2024年世界杯冠军是谁？
+<|im_end|>
+<|im_start|>assistant<|im_sep|>
+对不起，我不知道。
+<|im_end|>
 ```
 
 改为如下：
 
 ```
-人类：2024年世界杯冠军是谁？
-助手：这个我得查一下最新的体育赛事信息。
+<|im_start|>user<|im_sep|>
+2024年世界杯冠军是谁？
+<|im_end|>
+<|im_start|>assistant<|im_sep|>
+这个我得查一下最新的体育赛事信息。
 <|search|>2024年世界杯冠军队|2024 World Cup winner<|/search|>
+<|im_end|>
 ```
 
 通过这种方式训练后，模型就学会了：
@@ -213,30 +221,50 @@ interesting	40.40%
 实际应用中，流程大致如下：
 
 1. 用户询问：特斯拉最新股价是多少？
-2. 模型发现需要最新的数据，于是回答：
+2. 模型发现需要最新的数据，于是返回一个搜索标记，并带上搜索关键词：
 
 ```
+<|im_start|>user<|im_sep|>
+特斯拉最新股价是多少？
+<|im_end|>
+<|im_start|>assistant<|im_sep|>
 让我查查最新股价。
 <|search|>Tesla stock price today|特斯拉股票实时价格<|/search|>
+<|im_end|>
 ```
 
 3. 程序看到这个搜索标记，就会去谷歌搜索这些关键词。
 4. 程序将谷歌搜到的结果放进对话：
 
 ```
+<|im_start|>user<|im_sep|>
+特斯拉最新股价是多少？
+<|im_end|>
+<|im_start|>assistant<|im_sep|>
+让我查查最新股价。
+<|search|>Tesla stock price today|特斯拉股票实时价格<|/search|>
+<|im_end|>
 <|im_start|>system<|im_sep|>
 搜索结果：特斯拉(TSLA)股价为193.57美元（2024年2月8日收盘价）
 <|im_end|>
-<|im_start|>user<|im_sep|>
-特斯拉最新的股价是多少？
-<|im_end|>
-<|im_start|>assistant<|im_sep|>
 ```
 
 5. 模型看到搜索结果，就能回答：
 
 ```
-根据最新数据，特斯拉股价是193.57美元（2024年2月8日收盘价）。<|im_end|>
+<|im_start|>user<|im_sep|>
+特斯拉最新股价是多少？
+<|im_end|>
+<|im_start|>assistant<|im_sep|>
+让我查查最新股价。
+<|search|>Tesla stock price today|特斯拉股票实时价格<|/search|>
+<|im_end|>
+<|im_start|>system<|im_sep|>
+搜索结果：特斯拉(TSLA)股价为193.57美元（2024年2月8日收盘价）
+<|im_end|>
+<|im_start|>assistant<|im_sep|>
+根据最新数据，特斯拉股价是193.57美元（2024年2月8日收盘价）。
+<|im_end|>
 ```
 
 通过这些方式，AI能够更加准确和实时地回答问题。
