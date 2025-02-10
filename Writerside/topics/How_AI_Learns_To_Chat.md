@@ -30,17 +30,19 @@
 2. **预训练（Pre-trained）** ：它需要先在一个庞大的数据集上进行训练，这个过程帮助模型学习语言的规律。
 3. **Transformer**：这是模型的具体结构名称，负责高效处理文本序列并捕捉上下文间的关系。
 
+顾名思义，第一步就是基于之前提到的语料库来对模型进行预训练，这一过程可以让模型获得语料库中丰富的的知识。
+
 ### 训练流程示例：下一个单词预测
 
-假设我们有语料库中的一段文字：
+这是前文语料库中的一段文字：
 
 > I tend to specialise in shallow depth of field commercial and editorial images, recently I have been involved in portraiture and fashion as the technical challenges have been interesting to me. Most of my work is conducted on site and is taken "free style". I prefer to work this way, I "find" the image at the time of the event. I am passionate about the "feel" of an image, I love to produce images that evoke an emotion or question from the viewer. If you have something special and creative you wish to produce or take part in then please make contact. Above all the wordy bits.... I just love taking pictures ... Send me an email if you're interested in working with me.
 
-训练的核心思路之一就是让模型学习“下一个词”或“下一个句子”的概率分布。例如，假设我们有以下句子（仅为示例）：
+训练的核心思路之一就是让模型学习“下一个词”或“下一个句子”的概率分布。例如，我们从上文中任意截取一段文字：
 
-> “… recently I have been involved in portraiture and fashion as the technical challenges have been ...”
+> “recently I have been involved in portraiture and fashion as the technical challenges have been ~~interesting to me.~~”
 
-在训练时，如果截取到“...have been...”的位置，模型需要猜测接下来的单词是什么。模型会返回一个概率列表，其中包含所有可能的单词以及它们的概率：
+把“recently... challenges have been”这一部分发送给模型，然后让模型猜测接下来的单词是什么。模型会返回一个概率列表，其中包含所有可能的单词以及它们的概率：
 
 ```
 下一个单词	概率
@@ -67,7 +69,7 @@ interesting	40.40%
 
 **当训练完成后，我们就得到一个“基础模型”（Base Model）。**
 
-这个时候，模型还只是一个预测器，给它一段文本，它会预测出下一个单词。
+这个时候，模型还只是一个预测器，它获得了语料库中的所有知识。给它一段文本，它会根据知识预测出下一个单词。
 
 一个常见的误解是，模型一次性就能预测出整个句子或段落的答案。实际上，模型是逐词逐步生成答案的。比如，当你问它一个问题，它会根据上下文每次只预测一个词，然后程序把这个词加到句子中，再让模型根据这个句子预测下一个词。
 
@@ -107,6 +109,8 @@ interesting	40.40%
 
 当程序检测到 `<|im_end|>` 时，它知道这一句话已经结束，因此不会继续让模型补全。通过这种少量示例的训练，模型便能学习如何在这种格式下进行对话，最终将基础模型转变为能够进行流畅对话的 Chat 模型。
 
+从这一角度来说，你可以把此时的模型看作“人类专家模拟器”，当你提出一个问题时，模型会基于“互联网语料库”中习得的知识，模仿“人类专家语料库”中习得的风格，来回复你的问题。
+
 ## 上下文（Context）
 
 人类在对话时，会根据当前的谈话内容来理解和回应。比如：
@@ -118,7 +122,7 @@ interesting	40.40%
 
 即使第二句没有明确说明是谁不开心，我们也能从上下文理解"它"指的是狗。
 
-大语言模型也是如此。当我们和模型对话时，之前的对话内容会作为"上下文"传给模型：
+大语言模型也是如此。当我们和模型对话时，之前的对话的全部内容会作为"上下文"一起传给模型：
 
 ```
 <|im_start|>user<|im_sep|>
@@ -130,6 +134,7 @@ interesting	40.40%
 <|im_start|>user<|im_sep|>
 它今天不太开心
 <|im_end|>
+<|im_start|>assistant<|im_sep|>
 ```
 
 模型能够理解"它"指的是狗，因为在之前的对话中已经提到过狗。这种依赖上下文的理解方式让对话更自然。
@@ -176,15 +181,16 @@ interesting	40.40%
 [这个说法混淆了多个历史事实]
 ```
 
-#### 减少大语言模型产生“幻觉”的方法
+### 减少大语言模型产生“幻觉”的方法
 
-现在的模型在这方面有所改善，主要的方法之一就是为模型提供正确的问题和答案，在发现模型会胡说时，通过修改答案为“对不起，我不知道....”的方式，来避免幻觉现象。这个新的训练语料库帮助模型在遇到不确定的问题时，能正确回应：“我不知道”。
+现在的模型在减少"幻觉"方面已有所改善，其中一个有效方法是：
 
+首先准备一系列问题和对应的标准答案，通过测试找出模型容易产生错误回答或"幻觉"的问题。然后将这些问题的标准答案统一改写为"对不起，我不知道..."等诚实的回应，由此形成新的训练语料库。用这个经过处理的语料库重新训练模型，使其学会在面对不确定的问题时，能够坦诚地承认"我不知道"，而不是随意作答。
 ## 搜索
 
 大语言模型虽然学习了大量的知识，但仍然存在两个主要问题：
 
-1. **知识不够新**：模型的知识都是训练时的，训练之后发生的事情它就无法知晓了。
+1. **知识不够新**：模型的知识都是截止到训练时的，训练之后发生的事情它就无法知晓了。
 2. **可能会胡说**：有时候模型会自信满满地给出看似正确的答案，但实际上可能是错误的（即“幻觉”问题）。
 
 为了解决这些问题，我们可以教会模型使用搜索功能。具体做法是准备这样的训练数据：
@@ -212,7 +218,7 @@ interesting	40.40%
 <|im_end|>
 ```
 
-通过这种方式训练后，模型就学会了：
+用这种语料训练后，模型就学会了：
 
 1. 知道何时需要查找最新信息。
 2. 主动提出要进行搜索。
@@ -234,7 +240,7 @@ interesting	40.40%
 ```
 
 3. 程序看到这个搜索标记，就会去谷歌搜索这些关键词。
-4. 程序将谷歌搜到的结果放进对话：
+4. 程序将谷歌搜到的结果放进对话，继续调用模型补全：
 
 ```
 <|im_start|>user<|im_sep|>
